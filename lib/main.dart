@@ -11,11 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Scaner MRZ ID Card',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       home: FutureBuilder<Map<PermissionGroup, PermissionStatus>>(
         future:
             PermissionHandler().requestPermissions([PermissionGroup.camera]),

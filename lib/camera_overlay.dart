@@ -6,9 +6,11 @@ class tùy chỉnh lớp phủ kính trên máy ảnh, để có thể bắt đ�
 */
 class CameraOverlay extends StatelessWidget {
   const CameraOverlay({Key key, this.child}) : super(key: key);
+
   static const _documentFrameRatio =
       1.42; // Passport's size (ISO/IEC 7810 ID-3) is 125mm × 88mm
   final Widget child;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -33,7 +35,6 @@ class CameraOverlay extends StatelessWidget {
     );
   }
 
-  //kích thước lớp phủ
   RRect _calculateOverlaySize(Size size) {
     double width, height;
     if (size.height > size.width) {
@@ -54,7 +55,9 @@ class CameraOverlay extends StatelessWidget {
 
 class _DocumentClipper extends CustomClipper<Path> {
   _DocumentClipper({this.rect});
+
   final RRect rect;
+
   @override
   Path getClip(Size size) => Path()
     ..addRRect(rect)
@@ -62,12 +65,13 @@ class _DocumentClipper extends CustomClipper<Path> {
     ..fillType = PathFillType.evenOdd;
 
   @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(_DocumentClipper oldClipper) => false;
 }
 
 class _WhiteOverlay extends StatelessWidget {
   const _WhiteOverlay({Key key, this.rect}) : super(key: key);
   final RRect rect;
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
